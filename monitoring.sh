@@ -14,10 +14,15 @@ sleep 1
 echo "CPU and memory usage"
 echo "Available space"
 echo "Available memory"
-
 read input
 fi
 
 if [ "$input" == "CPU and memory usage" ]; then
 htop
+elif [ "$input" == "Available space" ]; then
+df -h
+elif [ "$input" == "Available memory" ]; then
+
+
+free -h
 fi
