@@ -1,6 +1,6 @@
 #!/bin/bash
 clear
-echo "What would you like to view?"
+echo "What would you like to view? (Case Sensitive)"
 sleep 1
 echo "CPU and memory usage"
 echo "Available space"
@@ -28,7 +28,7 @@ echo ""
 echo ""
 echo ""
 while true; do
-echo "click Enter to escape or choose another option"
+echo "click Enter to escape or choose another option (Case Sensitive)"
 sleep 1
 echo "CPU and memory usage"
 echo "Available space"
