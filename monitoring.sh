@@ -1,13 +1,13 @@
 #!/bin/bash
 clear
-echo "What would you like to view? (Case Sensitive)"
+echo "What would you like to view?"
 sleep 1
-echo "CPU and memory usage"
-echo "Available space"
-echo "Available memory"
+echo "CPU and memory usage (1)"
+echo "Available space (2)"
+echo "Available memory (3)"
 
 read input
-if [ "$input" != "CPU and memory usage" ] && [ "$input" != "Available space" ] && [ "$input" != "Available memory" ]; then
+if [ "$input" != "1" ] && [ "$input" != "2" ] && [ "$input" != "3" ]; then
 echo "invalid input"
 sleep 1
 echo "CPU and memory usage"
@@ -16,11 +16,11 @@ echo "Available memory"
 read input
 fi
 
-if [ "$input" == "CPU and memory usage" ]; then
+if [ "$input" == "1" ]; then
 htop
-elif [ "$input" == "Available space" ]; then
+elif [ "$input" == "2" ]; then
 df -h
-elif [ "$input" == "Available memory" ]; then
+elif [ "$input" == "3" ]; then
 free -h
 fi
 sleep 1
@@ -28,23 +28,23 @@ echo ""
 echo ""
 echo ""
 while true; do
-echo "click Enter to escape or choose another option (Case Sensitive)"
+echo "click Enter to escape or choose another option"
 sleep 1
-echo "CPU and memory usage"
-echo "Available space"
-echo "Available memory"
+echo "CPU and memory usage (1)"
+echo "Available space (2)"
+echo "Available memory (3)"
 
 read redo
 clear
 if [ "$redo" == "" ]; then
 	exit 0
-elif [ "$redo" == "CPU and memory usage" ]; then
+elif [ "$redo" == "1" ]; then
                 htop
-elif [ "$redo" == "Available space" ]; then
+elif [ "$redo" == "2" ]; then
                 df -h
-elif [ "$redo" == "Available memory" ]; then
+elif [ "$redo" == "3" ]; then
                 free -h
-elif [ "$redo" != "CPU and memory usage" ] && [ "$redo" != "Available space" ] && [ "$redo" != "Available memory" ]; then
+elif [ "$redo" != "1" ] && [ "$redo" != "2" ] && [ "$redo" != "3" ]; then
 	echo "invalid input" 
 fi
 
