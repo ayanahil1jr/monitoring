@@ -40,10 +40,22 @@ if [ "$redo" == "" ]; then
 	exit 0
 elif [ "$redo" == "1" ]; then
                 htop
+                echo ""
+                echo ""
+                echo ""
+
 elif [ "$redo" == "2" ]; then
                 df -h
+		echo ""
+                echo ""
+                echo ""
+
 elif [ "$redo" == "3" ]; then
                 free -h
+		echo ""
+		echo ""
+		echo ""
+		
 elif [ "$redo" != "1" ] && [ "$redo" != "2" ] && [ "$redo" != "3" ]; then
 	echo "invalid input" 
 fi
