@@ -5,10 +5,10 @@ echo "What category would you like to view?"
 sleep 1
 echo ""
 echo "System Monitoring (a)"
-
+echo "View logs with JournalCTL (b)"
 read category
 
-if [ "$category" != "a" ]; then
+if [ "$category" != "a" ] && [ "$category" != "b" ]; then
 echo "Invalid Input"
 echo "Choose a new  category"
 sleep 1
@@ -85,4 +85,8 @@ elif [ "$redo" != "1" ] && [ "$redo" != "2" ] && [ "$redo" != "3" ]; then
 fi
 
 done
+fi
+
+if [ "$category" == "b" ]; then
+
 fi
