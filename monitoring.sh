@@ -1,10 +1,34 @@
 #!/bin/bash
 clear
+
+echo "What category would you like to view?"
+sleep 1
+echo ""
+echo "System Monitoring (a)"
+
+read category
+
+if [ "$category" != "a" ]; then
+echo "Invalid Input"
+echo "Choose a new  category"
+sleep 1
+
+echo "What category would you like to view?"
+sleep 1
+echo ""
+echo "System Monitoring (a)"
+
+read category
+
+fi
+
+if [ "$category" = "a" ]; then
 echo "What would you like to view?"
 sleep 1
 echo "CPU and memory usage (1)"
 echo "Available space (2)"
 echo "Available memory (3)"
+
 
 read input
 if [ "$input" != "1" ] && [ "$input" != "2" ] && [ "$input" != "3" ]; then
@@ -61,3 +85,4 @@ elif [ "$redo" != "1" ] && [ "$redo" != "2" ] && [ "$redo" != "3" ]; then
 fi
 
 done
+fi
