@@ -17,13 +17,15 @@ echo "What category would you like to view?"
 sleep 1
 echo ""
 echo "System Monitoring (a)"
+echo "View logs with JournalCTL (b)"
 
 read category
-
+category_type=""
 fi
 
 if [ "$category" = "a" ]; then
-echo "What would you like to view?"
+category_type="System Monitoring"
+echo "What would you like to view in $category_type?"
 sleep 1
 echo "CPU and memory usage (1)"
 echo "Available space (2)"
@@ -88,5 +90,60 @@ done
 fi
 
 if [ "$category" == "b" ]; then
+clear
+category_type="JournalCTL"
+echo "What logs would you like to view using $category_type?"
+sleep 1
+echo ""
+echo "All logs (a)"
+echo "Logs in real time (b)"
+echo "Logs for a specific service (c)"
+read input
+sleep 1
+clear
+if [ "$input" != "a" ] &&  [ "$input" != "b" ] && [ "$input" != "c" ]; then
+echo "invalid input. Try again"
+sleep 2
+clear
 
+echo "What logs would you like to view using $category_type?"
+sleep 1
+echo ""
+echo "All logs (a)"
+echo "Logs in real time (b)"
+echo "Logs for a specific service (c)"
+read input
+sleep 1
+clear
+
+fi
+
+if [ "$input" == "a" ]; then
+journalctl
+fi
+
+if [ "$input" == "b" ]; then
+journalctl -b
+fi
+
+if [ "$input" == "c" ]; then
+echo "Choose a specific service"
+echo ""
+echo "Here are some examples:"
+echo ""
+echo "ssh.service"
+echo "apache2.service"
+echo "nginx.service"
+echo ""
+echo "write out the specific service: journalctl -u <choose service>"
+
+read service
+
+if [ $? -ne 0 ]; then
+	echo "Invalid input. Try again."
+	read service
+else
+	journalctl -u $service
+fi
+fi
 fi
