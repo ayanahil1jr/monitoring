@@ -172,7 +172,8 @@ fi
 if [ "$category" == "c" ]; then
     echo "Choose the type of upgrade"
     echo ""
-    echo "Upgrade all packages (1)"
+    echo "Upgrade all installed packages (1)"
+    echo "Full Upgrade all installed packages. (WARNING: changes dependencies) (2)"
     read input
     if [ "$input" == "0" ]; then
         ./monitoring.sh
@@ -181,17 +182,52 @@ if [ "$category" == "c" ]; then
     if [ "$input" == "" ]; then
         exit 0
     fi
-    if [ "$input" != "1" ]; then
+    if [ "$input" != "1" ] && [ "$input" && "2" ]; then
         echo "Invalid input. Try again."
         sleep 2
         clear
         echo "Choose the type of upgrade"
         echo ""
         echo "Upgrade all packages (1)"
+        echo "Full Upgrade all installed packages. (WARNING: changes dependencies) (2)"
         read input
     fi
     if [ "$input" == "1" ]; then
         sudo apt update
         sudo apt upgrade
     fi
+    if [ "&input" == "2" ]; then
+        sudo apt update
+        sudo at full-upgrade
+    fi
+
+
+fi
+
+clear
+
+echo "Would you like to do other operations?"
+echo ""
+echo "yes"
+echo "no"
+
+read redo
+
+if [ "$redo" == "yes" ]; then
+    ./monitoring.sh
+    exit 0
+fi
+
+if [ "$redo" == "no" ]; then
+    exit 0
+fi
+
+if [ "$redo" != "yes" ] && [ "$redo" != "no" ]; then
+   echo "Invalid input"
+   sleep 1
+   clear
+   echo "Would you like to do other operations?"
+   echo ""
+   echo "yes"
+   echo "no"
 fi
