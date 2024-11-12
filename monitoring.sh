@@ -12,13 +12,13 @@ echo ""
 echo "System Monitoring (a)"
 echo "View logs with JournalCTL (b)"
 echo "Upgrading Services (c)"
+echo "Table Of Contents (d)"
 read category
-
 if [ "$category" == "" ]; then
 	exit 0
 fi
 	
-if [ "$category" != "a" ] && [ "$category" != "b" ] && [ "$category" != "c" ]; then
+if [ "$category" != "a" ] && [ "$category" != "b" ] && [ "$category" != "c" ] && [ "$category" != "d" ]; then
     echo "Invalid Input"
     echo "Choose a new category"
     sleep 1
@@ -205,6 +205,26 @@ if [ "$category" == "c" ]; then
 fi
 
 clear
+if [ "$category" == "d" ]; then
+    echo "I) System Monitoring"
+    echo "   1. CPU and Memory usage"
+    echo "   2. Available space"
+    echo "   3. Available memory"
+    echo "II) View Logs with JournalCTL"
+    echo "   1. All Logs"
+    echo "   2. Logs in Real time"
+    echo "   3. Logs for a specific service"
+    echo "III) Upgrading Services"
+    echo "   1. Upgrade all installed packages"
+    echo "   2. Full Upgrade all packages. (Changes dependencies)"
+    echo ""
+    echo "Press Enter to go back"
+    read leave
+    if [ "$leave" == "" ]; then
+        ./monitoring.sh
+        exit 0
+    fi
+fi
 
 echo "Would you like to do other operations?"
 echo ""
