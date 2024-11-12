@@ -24,11 +24,16 @@ while true; do
             "4" "Back to Main Menu" 3>&1 1>&2 2>&3)
 
             case $sys_opt in
-                "1") htop ;;             
-                "2") df -h ;;            
-                "3") free -h ;;          
-                "4") continue ;;       
-            esac
+    "1") 
+        htop ;;
+    "2") 
+        output=$(df -h)
+        whiptail --title "Disk Space Usage" --msgbox "$output" 20 80 ;;
+    "3") 
+        output=$(free -h)
+        whiptail --title "Available Memory" --msgbox "$output" 20 80 ;;
+esac
+
             ;;
         
         "2")
@@ -43,8 +48,21 @@ while true; do
                 "1") journalctl ;;                       
                 "2") journalctl -f ;;                    
                 "3")                                     
-                    service=$(whiptail --inputbox "Enter the service name (e.g., ssh.service):" 10 60 3>&1 1>&2 2>&3)
-                    journalctl -u "$service" ;;
+                   while true; do
+    service=$(whiptail --inputbox "Enter the specific service name to view logs (or leave empty to go back):" 10 60 3>&1 1>&2 2>&3)
+
+    if [ -z "$service" ]; then
+        break
+    fi
+
+    output=$(journalctl -u "$service" --no-pager | tail -n 20)
+
+    whiptail --title "Logs for $service" --msgbox "$output" 20 80
+done
+
+
+;;
+
                 "4") continue ;;                         
             esac
             ;;
